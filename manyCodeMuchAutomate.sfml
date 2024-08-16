@@ -1,0 +1,1209 @@
+NAME "Basic Supply/drill automation"
+
+every tick do --energize machines
+input fe:: from Battery bottom side 
+output fe:: to each Assembler, Compressor, Cutting_Machine, Packer, Alloy_Smelter, Wiremill, Polarizer, Macerator, Mixer 
+end
+
+every 20 ticks do --clear assemblers of crafting results
+input from machines
+output to Dump_Chest
+end
+
+every 20 ticks do --Alloy_Smelter Que
+input from AE2_Interface
+	if AE2_Interface has lt 256 bronze_ingot --resource level check
+		and AE2_Interface has gt 768 copper_ingot 
+		and AE2_Interface has gt 256 tin_ingot 
+	then
+		if not(some Alloy_Smelter has >= 0 copper_ingot --already crafting check
+			and some Alloy_Smelter has >= 0 bronze_ingot)
+		then
+			if Alloy_Smelter_1 has = 0 * -- individual device empty check
+			then output retain 6 copper_ingot to Alloy_Smelter_1
+				 output retain 2 tin_ingot to Alloy_Smelter_1
+			end
+		end
+	end
+end
+
+every 20 ticks do --Furnace Que
+end
+	
+every 20 ticks do --Compressor Que
+input from AE2_Interface, Misc_Parts
+if some Compressor has = 0 * then -- has empty device check
+	if AE2_Interface has lt 64 tin_plate then	--resource level check  
+		if not (some Compressor has gt 1 tin_ingot) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 tin_ingot to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 tin_ingot to Compressor_2
+			end
+		end
+	end
+	if AE2_Interface has lt 128 copper_plate then
+		if not (some Compressor has gt 1 copper_ingot) then
+			if Compressor_1 has = 0 * then
+				output retain 6 copper_ingot to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 copper_ingot to Compressor_2
+			end
+		end 
+	end
+	if AE2_Interface has lt 128 bronze_plate then 
+		if not (some Compressor has gt 1 bronze_ingot) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 bronze_ingot to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 bronze_ingot to Compressor_2
+			end
+		end
+	end
+	if AE2_Interface has lt 128 iron_plate then
+		if not (some Compressor has gt 1 iron_ingot) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 iron_ingot to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 iron_ingot to Compressor_2
+			end
+		end
+	end
+	if AE2_Interface has lt 128 gold_plate then
+		if not (some Compressor has gt 1 gold_ingot) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 gold_ingot to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 gold_ingot to Compressor_2
+			end
+		end
+	end
+	if AE2_Interface has lt 128 steel_plate then
+		if not (some Compressor has gt 1 steel_ingot) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 steel_ingot to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 stel_ingot to Compressor_2
+			end
+		end
+	end	
+	if Misc_Parts has lt 64 copper_ring then
+		if not (some Compressor has gt 1 copper_rod) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 copper_rod to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 copper_rod to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 64 iron_ring then
+		if not (some Compressor has gt 1 iron_rod) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 iron_rod to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 iron_rod to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 64 bronze_ring then
+		if not (some Compressor has gt 1 bronze_rod) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 bronze_rod to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 bronze_rod to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 64 steel_ring then
+		if not (some Compressor has gt 1 steel_rod) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 steel_rod to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 steel_rod to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 64 copper_curved_plate then
+		if not (some Compressor has gt 1 copper_plate) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 copper_plate to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 copper_plate to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 64 bronze_curved_plate then
+		if not (some Compressor has gt 1 bronze_plate) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 bronze_plate to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 bronze_plate to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 64 steel_curved_plate then
+		if not (some Compressor has gt 1 steel_plate) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 steel_plate to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 steel_plate to Compressor_2
+			end
+		end
+	end
+	if AE2_Interface has lt 64 aluminum_plate then	--resource level check  
+		if not (some Compressor has gt 1 aluminum_ingot) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 aluminum_ingot to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 aluminum_ingot to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 4 aluminum_ring then
+		if not (some Compressor has gt 0 aluminum_rod) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 aluminum_rod to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 aluminum_rod to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 8 aluminum_curved_plate then
+		if not (some Compressor has gt 1 aluminum_plate) then 
+			if Compressor_1 has = 0 * then
+				output retain 6 aluminum_plate to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 aluminum_plate to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 32 electrum_plate then
+		if not (some Compressor has gt 1 electrum_ingot) then
+			if Compressor_1 has = 0 * then
+				output retain 6 electrum_ingot to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 electrum_ingot to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 12 tin_ring then
+		if not (some Compressor has gt 1 tin_rod) then
+			if Compressor_1 has = 0 * then
+				output retain 6 tin_rod to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 tin_rod to Compressor_2
+			end
+		end
+	end
+	if AE2_Interface has lt 128 battery_alloy_plate then
+		if not (some Compressor has gt 1 battery_alloy_ingot) then
+			if Compressor_1 has = 0 * then
+				output retain 6 battery_alloy_ingot to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 battery_alloy_ingot to Compressor_2
+			end
+		end
+	end
+	if Misc_Parts has lt 32 battery_alloy_curved_plate then
+		if not (some Compressor has gt 1 battery_alloy_plate) then
+			if Compressor_1 has = 0 * then
+				output retain 6 battery_alloy_plate to Compressor_1
+			else if Compressor_2 has = 0 * then
+				output retain 6 battery_alloy_plate to Compressor_2
+			end
+		end
+	end	
+end
+output 0 iron to Misc_Parts
+end
+	
+every 20 ticks do --Cutting_Machine Que
+input from AE2_Interface, Misc_Parts
+input fluid::lubricant from Lube_Tank bottom side
+if some Cutting_Machine has = 0 * then
+	if AE2_Interface has lt 128 glass_pane 
+	and Lube_Tank has gt 10 fluid::lubricant then
+		if not (some Cutting_Machine has gt 1 glass) then 
+			if Cutting_Machine_1 has = 0 * then
+				output retain 60 glass to Cutting_Machine
+				output retain 10 fluid::lubricant to Cutting_Machine_1 top side 
+			else if Cutting_Machine_2 has = 0 * then
+				output retain 60 glass to Cutting_Machine
+				output retain 10 fluid::lubricant to Cutting_Machine_2 top side 
+			end 
+		end
+	end	
+	if Misc_Parts has lt 128 copper_rod 
+	and Lube_Tank has gt 6 fluid::lubricant then
+		if not (some Cutting_Machine has gt 1 copper_ingot) then 
+			if Cutting_Machine_1 has = 0 * then
+				output retain 6 copper_ingot to Cutting_Machine
+				output retain 6 fluid::lubricant to Cutting_Machine_1 top side 
+			else if Cutting_Machine_2 has = 0 * then
+				output retain 6 copper_ingot to Cutting_Machine
+				output retain 6 fluid::lubricant to Cutting_Machine_2 top side 
+			end 
+		end
+	end	
+	if Misc_Parts has lt 128 bronze_rod 
+	and Lube_Tank has gt 6 fluid::lubricant then
+		if not (some Cutting_Machine has gt 1 bronze_ingot) then 
+			if Cutting_Machine_1 has = 0 * then
+				output retain 6 bronze_ingot to Cutting_Machine
+				output retain 6 fluid::lubricant to Cutting_Machine_1 top side 
+			else if Cutting_Machine_2 has = 0 * then
+				output retain 6 bronze_ingot to Cutting_Machine
+				output retain 6 fluid::lubricant to Cutting_Machine_2 top side 
+			end 
+		end
+	end
+	if Misc_Parts has lt 128 iron_rod 
+	and Lube_Tank has gt 6 fluid::lubricant then
+		if not (some Cutting_Machine has gt 1 iron_ingot) then 
+			if Cutting_Machine_1 has = 0 * then
+				output retain 6 iron_ingot to Cutting_Machine
+				output retain 6 fluid::lubricant to Cutting_Machine_1 top side 
+			else if Cutting_Machine_2 has = 0 * then
+				output retain 6 iron_ingot to Cutting_Machine
+				output retain 6 fluid::lubricant to Cutting_Machine_2 top side 
+			end 
+		end
+	end
+	if AE2_Interface has lt 128 steel_rod 
+	and Lube_Tank has gt 6 fluid::lubricant then
+		if not (some Cutting_Machine has gt 1 steel_ingot) then 
+			if Cutting_Machine_1 has = 0 * then
+				output retain 6 steel_ingot to Cutting_Machine
+				output retain 6 fluid::lubricant to Cutting_Machine_1 top side 
+			else if Cutting_Machine_2 has = 0 * then
+				output retain 6 steel_ingot to Cutting_Machine
+				output retain 6 fluid::lubricant to Cutting_Machine_2 top side 
+			end 
+		end
+	end 
+	if Misc_Parts has lt 12 aluminum_rod 
+	and Lube_Tank has gt 6 fluid::lubricant then
+		if not (some Cutting_Machine has gt 1 aluminum_ingot) then 
+			if Cutting_Machine_1 has = 0 * then
+				output retain 6 aluminum_ingot to Cutting_Machine_1
+				output retain 6 fluid::lubricant to Cutting_Machine_1 top side 
+			else if Cutting_Machine_2 has = 0 * then
+				output retain 6 aluminum_ingot to Cutting_Machine
+				output retain 6 fluid::lubricant to Cutting_Machine_2 top side 
+			end 
+		end
+	end
+	if Misc_Parts has lt 32 tin_rod
+	and Lube_Tank has gt 6 fluid::lubricant then
+		if not (some Cutting_Machine has gt 1 tin_ingot) then
+			if Cutting_Machine_1 has = 0 * then
+				output retain 6 tin_ingot to Cutting_Machine_1
+				output retain 6 fluid::lubricant to Cutting_Machine_1
+			if Cutting_Machine_2 has = 0 * then
+				output retain 6 tin_ingot to Cutting_Machine_2
+				output retain 6 fluid::lubricant to Cutting_Machine_2
+			end
+		end
+	end
+end
+end
+output 0 iron to Misc_Parts
+output 0 fluid::lubricant to Lube_Tank top side
+end
+
+every 20 ticks do --Wiremill
+input from AE2_Interface, Misc_Parts
+if some Wiremill has = 0 * then
+	if Misc_Parts has lt 256 copper_wire then 
+		if not (some Wiremill has gt 0 copper_plate) then
+			if Wiremill_1 has = 0 * then
+				output retain 16 copper_plate to Wiremill_1
+			end
+		end
+	end	
+	if Misc_Parts has lt 64 tin_wire then
+		if not (some Wiremill has gt 0 tin_plate) then
+			if Wiremill_1 has = 0 * then
+				output retain 16 tin_plate to Wiremill_1
+			end
+		end
+	end
+	if Misc_Parts has lt 128 copper_fine_wire then
+		if not (some Wiremill has gt 0 copper_wire) then
+			if Wiremill_1 has = 0 * then
+				output retain 16 copper_wire to Wiremill_1
+			end
+		end
+	end
+	if AE2_Interface has lt 64 electrum_wire then 
+		if not (some Wiremill has gt 0 electrum_plate) then
+			if Wiremill_1 has = 0 * then
+				output retain 16 electrum_plate to Wiremill_1
+			end
+		end
+	end
+	if Misc_Parts has lt 32 electrum_fine_wire then
+		if not (some Wiremill has gt 0 electrum_wire) then
+			if Wiremill_1 has = 0 * then
+				output retain 12 electrum_wire to Wiremill_1
+			end
+		end
+	end		
+end
+output 0 to Dump_Chest
+end
+
+every 20 ticks do --Macerator Que
+input from AE2_Interface, Misc_Parts
+if some Macerator has = 0 * then
+	if AE2_Interface has lt 256 coal_dust then
+		if not (some Macerator has gt 0 coal) then
+			if Macerator_1 has = 0 * then
+				output retain 64 coal to Macerator_1
+			end
+		end
+	end
+end
+end
+
+every 20 ticks do --Mixer Que
+input from AE2_Interface, Misc_Parts
+input fluid::* from Tanks bottom side
+if some Mixer has = 0 * then
+	if AE2_Interface has lt 128 rubber_sheet 
+	and Rubber_Tank has gt 400 fluid::synthetic_rubber
+	and AE2_Interface has gt 4 paper then
+		if not (some Mixer has gt 0 paper) then
+			if Mixer_1 has = 0 * then
+				output retain 4 paper to Mixer 
+				output retain 400 fluid::synthetic_rubber to Mixer_1 top side 
+			else if Mixer_2 has = 0 * then
+				output retain 4 paper to Mixer 
+				output retain 400 fluid::synthetic_rubber to Mixer_2 top side 
+			end
+		end 
+	end
+end
+end
+
+every 20 ticks do --Polarizer Que
+input from AE2_Interface, Misc_Parts
+if some Polarizer has = 0 * then
+		if Misc_Parts has lt 64 steel_rod_magnetic then
+			if not (some Polarizer has gt 0 steel_rod) then
+				if Polarizer_1 has = 0 * then
+					output retain 6 steel_rod to Polarizer_1
+				end
+			end
+		end
+	end
+end
+
+every 20 ticks do --Packer Que
+input from AE2_Interface, Misc_Parts
+if some Packer has = 0 * then
+	if Misc_Parts has lt 8 copper_blade
+	and Misc_Parts has gt 4 copper_curved_plate
+	and Misc_Parts has gt 2 copper_rod then
+		if not (some Packer has gt 0 copper_rod 
+			and some Packer has gt 0 copper_curved_plate) then
+			if Packer_1 has = 0 * then
+				output retain 2 copper_rod to Packer_1
+				output retain 4 copper_curved_plate to Packer_1
+			end
+		end
+	end
+	if AE2_Interface has lt 32 tin_cable
+	and Misc_Parts has gt 6 tin_wire
+	and AE2_Interface has gt 12 rubber_sheet then
+		if not (some Packer has gt 0 rubber_sheet
+			and some Packer has gt 0 tin_wire) then
+			if Packer_1 has = 0 * then
+				output retain 12 rubber_sheet to Packer_1
+				output retain 6 tin_wire to Packer_1
+			end
+		end
+	end
+	if Misc_Parts has lt 8 tin_blade
+	and Misc_Parts has gt 1 tin_rod 
+	and Misc_Parts has gt 2 tin_curved_plate then
+		if not (some Packer has gt 0 tin_rod 
+			and some Packer has gt 0 tin_curved_plate) then
+			if Packer_1 has = 0 * then
+				output retain 1 tin_rod to Packer_1
+				output retain 2 tin_curved_plate to Packer_1
+			end
+		end
+	end
+	if Misc_Parts has lt 8 aluminum_blade 
+	and Misc_Parts has gt 1 aluminum_rod
+	and Misc_Parts has gt 2 aluminum_curved_plate then
+		if not (some Packer has gt 0 aluminum_rod 
+			and some Packer has gt 0 aluminum_curved_plate) then
+			if Packer_1 has = 0 * then
+				output retain 1 aluminum_rod to Packer_1
+				output retain 2 aluminum_curved_plate to Packer_1
+			end
+		end
+	end
+	if AE2_Interface has lt 32 electrum_cable
+	and AE2_Interface has gt 6 rubber_sheet
+	and AE2_Interface has gt 3 electrum_wire then
+		if not (some Packer has gt 0 rubber_sheet
+			and some Packer has gt 0 tin_wire) then
+			if Packer_1 has = 0 * then
+				output retain 6 rubber_sheet to Packer_1
+				output retain 3 electrum_wire to Packer_1
+			end
+		end
+	end
+end
+output 0 to Dump_Chest
+end
+
+every 20 ticks do --Assembler Que
+input from AE2_Interface, Misc_Parts
+input fluid:: from Tanks bottom side
+if some Assembler has = 0 * then
+	if AE2_Interface has lt 64 iron_gear 
+	and Solder_Tank has gt 100 fluid::soldering_alloy
+	and AE2_Interface has gt 4 iron_plate
+	and Misc_Parts has gt 1 iron_ring then
+		if not (some Assembler has gt 0 iron_plate
+		and some Assembler has gt 0 iron_ring) then
+			if Assembler_1 has = 0 * then
+				output retain 4 iron_plate to Assembler_1
+				output retain 1 iron_ring to Assembler_1
+				output retain 100 fluid::soldering_alloy to Assembler_1 top side 	
+			else if Assembler_2 has = 0 * then
+				output retain 4 iron_plate to Assembler_2
+				output retain 1 iron_ring to Assembler_2
+				output retain 100 fluid::soldering_alloy to Assembler_2 top side 	
+			else if Assembler_3 has = 0 * then
+				output retain 4 iron_plate to Assembler_3
+				output retain 1 iron_ring to Assembler_3
+				output retain 100 fluid::soldering_alloy to Assembler_3 top side 
+			end
+		end
+	end	
+	if AE2_Interface has lt 64 bronze_gear 
+	and Solder_Tank has gt 100 fluid::soldering_alloy
+		and Misc_Parts has gt 1 bronze_ring
+		and AE2_Interface has gt 4 bronze_plate then
+		if not (some Assembler has gt 0 bronze_ring
+		and some Assembler has gt 0 bronze_plate) then
+			if Assembler_1 has = 0 * then
+				output retain 1 bronze_ring to Assembler_1
+				output retain 4 bronze_plate to Assembler_1
+				output retain 100 fluid::soldering_alloy to Assembler_1 top side 
+			else if Assembler_2 has = 0 * then
+				output retain 1 bronze_ring to Assembler_2
+				output retain 4 bronze_plate to Assembler_2
+				output retain 100 fluid::soldering_alloy to Assembler_2 top side 
+			else if Assembler_3 has = 0 * then
+				output retain 1 bronze_ring to Assembler_3
+				output retain 4 bronze_plate to Assembler_3
+				output retain 100 fluid::soldering_alloy to Assembler_3 top side 
+			end
+		end
+	end 	
+	if AE2_Interface has lt 64 steel_gear
+	and Solder_Tank has gt 100 fluid::soldering_alloy
+	and Misc_Parts has gt 1 steel_ring
+	and AE2_Interface has gt 4 steel_plate then
+		if not (some Assembler has gt 0 steel_ring
+		and some Assembler has gt 0 steel_plate) then
+			if Assembler_1 has = 0 * then
+				output retain 1 steel_ring to Assembler_1 
+				output retain 4 steel_plate to Assembler_1 
+				output retain 100 fluid::soldering_alloy to Assembler_1 top side  
+			else if Assembler_2 has = 0 * then
+				output retain 1 steel_ring to Assembler_2 
+				output retain 4 steel_plate to Assembler_2 
+				output retain 100 fluid::soldering_alloy to Assembler_2 top side 
+			else if Assembler_3 has = 0 * then
+				output retain 1 steel_ring to Assembler_3 
+				output retain 4 steel_plate to Assembler_3 
+				output retain 100 fluid::soldering_alloy to Assembler_3 top side 
+			end
+		end
+	end 				
+	if Misc_Parts has lt 64 inductor
+	and AE2_Interface has gt 1 steel_rod
+	and Misc_Parts has gt 8 copper_wire then
+		if not (some Assembler has gt 0 steel_rod
+		and some Assembler has gt 0 copper_wire) then
+			if Assembler_1 has = 0 * then
+				output retain 1 steel_rod to Assembler_1
+				output retain 8 copper_wire to Assembler_1 
+			else if Assembler_2 has = 0 * then
+				output retain 1 steel_rod to Assembler_2
+				output retain 8 copper_wire to Assembler_2 
+			else if Assembler_3 has = 0 * then
+				output retain 1 steel_rod to Assembler_3
+				output retain 8 copper_wire to Assembler_3 
+			end
+		end
+	end
+	if AE2_Interface has lt 64 analog_circuit_board
+		and AE2_Interface has gt 2 rubber_sheet
+		and AE2_Interface has gt 1 copper_plate then
+		if not (some Assembler has gt 0 rubber_sheet
+		and some Assembler has gt 0 copper_plate) then
+			if Assembler_1 has = 0 * then
+				output retain 2 rubber_sheet to Assembler_1
+				output retain 1 copper_plate to Assembler_1 
+			else if Assembler_2 has = 0 * then
+				output retain 2 rubber_sheet to Assembler_2
+				output retain 1 copper_plate to Assembler_2 
+			else if Assembler_3 has = 0 * then
+				output retain 2 rubber_sheet to Assembler_3
+				output retain 1 copper_plate to Assembler_3 
+			end
+		end
+	end		
+	if AE2_Interface has lt 12 copper_rotor
+	and Solder_Tank has gt 100 fluid::soldering_alloy
+	and Misc_Parts has gt 1 copper_ring
+	and Misc_Parts has gt 4 copper_blade then
+		if not (some Assembler has gt 0 copper_ring
+		and some Assembler has gt 0 copper_blade) then
+			if Assembler_1 has = 0 * then
+				output retain 1 copper_ring to Assembler_1 
+				output retain 4 copper_blade to Assembler_1 
+				output retain 100 fluid::soldering_alloy to Assembler_1 top side 
+			else if Assembler_2 has = 0 * then
+				output retain 1 copper_ring to Assembler_2
+				output retain 4 copper_blade to Assembler_2 
+				output retain 100 fluid::soldering_alloy to Assembler_2 top side 
+			else if Assembler_3 has = 0 * then
+				output retain 1 copper_ring to Assembler_3
+				output retain 4 copper_blade to Assembler_3 
+				output retain 100 fluid::soldering_alloy to Assembler_3 top side 
+			end
+		end
+	end
+	if AE2_Interface has lt 64 resistor
+	and Misc_Parts has gt 2 copper_fine_wire
+	and AE2_Interface has gt 1 coal_dust then
+		if not (some Assembler has lt 0 copper_fine_wire
+		and some Assembler has lt 0 coal_dust) then
+			if Assembler_1 has = 0 * then
+				output retain 2 copper_fine_wire to Assembler_1
+				output retain 1 coal_dust to Assembler_1  
+			else if Assembler_2 has = 0 * then
+				output retain 2 copper_fine_wire to Assembler_2
+				output retain 1 coal_dust to Assembler_2
+			else if Assembler_3 has = 0 * then
+				output retain 2 copper_fine_wire to Assembler_2
+				output retain 1 coal_dust to Assembler_2
+			end
+		end
+	end
+	if Misc_Parts has lt 6 capacitor
+	and AE2_Interface has gt 2 gold_plate
+	and AE2_Interface has gt 1 rubber_sheet
+	and Misc_Parts has gt 2 copper_wire then
+		if not (some Assembler has gt 0 gold_plate
+		and some Assembler has gt 0 copper_wire
+		and some Assembler has gt 0 rubber_sheet) then
+			if Assembler_1 has = 0 * then
+				output retain 2 gold_plate to Assembler_1
+				output retain 2 copper_wire to Assembler_1 
+				output retain 1 rubber_sheet to Assembler_1 
+			else if Assembler_2 has = 0 * then
+				output retain 2 gold_plate to Assembler_2
+				output retain 2 copper_wire to Assembler_2 
+				output retain 1 rubber_sheet to Assembler_2 
+			else if Assembler_3 has = 0 * then
+				output retain 2 gold_plate to Assembler_3
+				output retain 2 copper_wire to Assembler_3 
+				output retain 1 rubber_sheet to Assembler_3 
+			end
+		end
+	end			
+	if Misc_Parts has lt 6 steel_drill_head 
+	and Solder_Tank has gt 75 fluid::soldering_alloy
+	and AE2_Interface has gt 1 steel_plate
+	and Misc_Parts has gt 2 steel_curved_plate
+	and AE2_Interface has gt 1 steel_rod
+	and AE2_Interface has gt 2 steel_gear then
+		if not (some Assembler has gt 0 steel_plate
+		and some Assembler has gt 0  steel_curved_plate
+		and some Assembler has gt 0 steel_rod
+		and some Assembler has gt 0 steel_gear) then
+			if Assembler_1 has = 0 * then
+				output retain 1 steel_plate to Assembler_1
+				output retain 2 steel_curved_plate to Assembler_1
+				output retain 1 steel_rod to Assembler_1
+				output retain 2 steel_gear to Assembler_1
+				output retain 75 fluid::soldering_alloy to Assembler_1 top side 
+			else if Assembler_2 has = 0 * then
+				output retain 1 steel_plate to Assembler_2
+				output retain 2 steel_curved_plate to Assembler_2
+				output retain 1 steel_rod to Assembler_2
+				output retain 2 steel_gear to Assembler_2
+				output retain 75 fluid::soldering_alloy to Assembler_2 top side 
+			else if Assembler_3 has = 0 * then
+				output retain 1 steel_plate to Assembler_3
+				output retain 2 steel_curved_plate to Assembler_3
+				output retain 1 steel_rod to Assembler_3
+				output retain 2 steel_gear to Assembler_3
+				output retain 75 fluid::soldering_alloy to Assembler_3 top side 
+			end
+		end
+	end			
+	if AE2_Interface has lt 6 motor
+	and Misc_Parts has gt 1 steel_rod_magnetic
+	and AE2_Interface has gt 2 steel_rod
+	and Misc_Parts has gt 2 tin_cable
+	and Misc_Parts has gt 4 copper_wire then
+		if not (some Assembler has gt 0 steel_rod_magnetic
+		and some Assembler has gt 0 steel_rod
+		and some Assembler has gt 0 tin_cable
+		and some Assembler has gt 0 copper_wire) then
+			if Assembler_1 has = 0 * then
+				output retain 1 steel_rod_magnetic to Assembler_1
+				output retain 2 steel_rod to Assembler_1
+				output retain 2 tin_cable to Assembler_1
+				output retain 4 copper_wire to Assembler_1
+			else if Assembler_2 has = 0 * then
+				output retain 1 steel_rod_magnetic to Assembler_2
+				output retain 2 steel_rod to Assembler_2
+				output retain 2 tin_cable to Assembler_2
+				output retain 4 copper_wire to Assembler_2
+			else if Assembler_3 has = 0 * then
+				output retain 1 steel_rod_magnetic to Assembler_3
+				output retain 2 steel_rod to Assembler_3
+				output retain 2 tin_cable to Assembler_3
+				output retain 4 copper_wire to Assembler_3
+			end
+		end
+	end		
+	if Misc_Parts has lt 6 bronze_drill_head
+	and Solder_Tank has gt 75 fluid::soldering_alloy
+	and AE2_Interface has gt 1 bronze_plate
+	and Misc_Parts has gt 2 bronze_curved_plate
+	and Misc_Parts has gt 1 bronze_rod
+	and AE2_Interface has gt 2 bronze_gear then
+		if not (some Assembler has gt 0 bronze_plate
+		and some Assembler has gt 0 bronze_curved_plate
+		and some Assembler has gt 0 bronze_rod
+		and some Assembler has gt 0 bronze_gear) then
+			if Assembler_1 has = 0 * then
+				output retain 1 bronze_plate to Assembler_1 
+				output retain 2 bronze_curved_plate to Assembler_1
+				output retain 1 bronze_rod to Assembler_1
+				output retain 2 bronze_gear to Assembler_1
+				output retain 75 fluid::soldering_alloy to Assembler_1 top side 
+			else if Assembler_2 has = 0 * then
+				output retain 1 bronze_plate to Assembler_2 
+				output retain 2 bronze_curved_plate to Assembler_2
+				output retain 1 bronze_rod to Assembler_2
+				output retain 2 bronze_gear to Assembler_2
+				output retain 75 fluid::soldering_alloy to Assembler_2 top side 
+			else if Assembler_3 has = 0 * then
+				output retain 1 bronze_plate to Assembler_3 
+				output retain 2 bronze_curved_plate to Assembler_3
+				output retain 1 bronze_rod to Assembler_3
+				output retain 2 bronze_gear to Assembler_3
+				output retain 75 fluid::soldering_alloy to Assembler_3 top side 
+			end
+		end
+	end			
+	if AE2_Interface has lt 128 item_pipe
+	and Misc_Parts has gt 6 bronze_curved_plate
+	and AE2_Interface has gt 2 steel_gear then
+		if not (some Assembler has gt 0 bronze_curved_plate
+		and some Assembler has gt 0 steel_gear) then
+			if Assembler_1 has = 0 * then
+				output retain 6 bronze_curved_plate to Assembler_1
+				output retain 2 steel_gear to Assembler_1 
+
+			else if Assembler_2 has = 0 * then
+				output retain 6 bronze_curved_plate to Assembler_2
+				output retain 2 steel_gear to Assembler_2
+
+			else if Assembler_3 has = 0 * then
+				output retain 6 bronze_curved_plate to Assembler_3
+				output retain 2 steel_gear to Assembler_3
+			end
+		end
+	end			
+	if AE2_Interface has lt 128 fluid_pipe
+	and Misc_Parts has gt 6 bronze_curved_plate
+	and AE2_Interface has gt 2 copper_rotor
+	and AE2_Interface has gt 1 glass_pane then
+		if not (some Assembler has gt 0 bronze_curved_plate
+		and some Assembler has gt 0 copper_rotor
+		and some Assembler has gt 0 glass_pane) then
+			if Assembler_1 has = 0 * then
+				output retain 6 bronze_curved_plate to Assembler_1
+				output retain 2 copper_rotor to Assembler_1 
+				output retain 1 glass_pane to Assembler_1 
+			else if Assembler_2 has = 0 * then
+				output retain 6 bronze_curved_plate to Assembler_2
+				output retain 2 copper_rotor to Assembler_2
+				output retain 1 glass_pane to Assembler_2
+			else if Assembler_3 has = 0 * then
+				output retain 6 bronze_curved_plate to Assembler_3
+				output retain 2 copper_rotor to Assembler_3
+				output retain 1 glass_pane to Assembler_3
+			end
+		end
+	end
+	if AE2_Interface has lt 128 tin_cable 
+	and Solder_Tank has gt 30 fluid::synthetic_rubber
+	and Misc_Parts has gt 3 tin_wire then
+		if not (some Assembler has gt 0 tin_wire) then
+			if Assembler_1 has = 0 * then
+				output retain 3 tin_wire to Assembler_1 
+				output retain 30 fluid::synthetic_rubber to Assembler_1 top side 
+			else if Assembler_2 has = 0 * then
+				output retain 3 tin_wire to Assembler_2
+				output retain 30 fluid::synthetic_rubber to Assembler_2 top side 
+			else if Assembler_3 has = 0 * then
+				output retain 3 tin_wire to Assembler_3
+				output retain 30 fluid::synthetic_rubber to Assembler_3 top side 
+			end 
+		end
+	end
+	if AE2_Interface has lt 32 analog_circuit
+	and AE2_Interface has gt 1 inductor
+	and AE2_Interface has gt 3 copper_wire
+	and AE2_Interface has gt 2 resistor
+	and AE2_Interface has gt 2 capacitor
+	and AE2_Interface has gt 1 analog_circuit_board then
+		if not (some Assembler has gt 0 inductor
+		and some Assembler has gt 0 copper_wire
+		and some Assembler has gt 0 resistor
+		and some Assembler has gt 0 capacitor
+		and some Assembler has gt 0 analog_circuit_board) then
+			if Assembler_1 has = 0 * then 
+				output retain 1 inductor to Assembler_1
+				output retain 3 copper_wire to Assembler_1
+				output retain 2 resistor to Assembler_1
+				output retain 2 capacitor to Assembler_1
+				output retain 1 analog_circuit_board to Assembler_1 
+			else if Assembler_2 has = 0 * then
+				output retain 1 inductor to Assembler_2
+				output retain 3 copper_wire to Assembler_2
+				output retain 2 resistor to Assembler_2
+				output retain 2 capacitor to Assembler_2
+				output retain 1 analog_circuit_board to Assembler_2 
+			else if Assembler_3 has = 0 * then
+				output retain 1 inductor to Assembler_3
+				output retain 3 copper_wire to Assembler_3
+				output retain 2 resistor to Assembler_3
+				output retain 2 capacitor to Assembler_3
+				output retain 1 analog_circuit_board to Assembler_3 
+			end
+		end
+	end	
+	if AE2_Interface has lt 64 bronze_drill
+	and Misc_Parts has gt 1 bronze_drill_head
+	and AE2_Interface has gt 2 iron_gear
+	and AE2_Interface has gt 1 item_pipe
+	and AE2_Interface has gt 1 fluid_pipe then
+		if not (some Assembler has gt 0 bronze_drill_head
+		and some Assembler has gt 0 iron_gear
+		and some Assembler has gt 0 item_pipe
+		and some Assembler has  gt 0 fluid_pipe) then
+			if Assembler_1 has = 0 * then
+				output retain 1 bronze_drill_head to Assembler_1
+				output retain 2 iron_gear to Assembler_1
+				output retain 1 item_pipe to Assembler_1
+				output retain 1 fluid_pipe to Assembler_1 
+			else if Assembler_2 has = 0 * then
+				output retain 1 bronze_drill_head to Assembler_2
+				output retain 2 iron_gear to Assembler_2
+				output retain 1 item_pipe to Assembler_2
+				output retain 1 fluid_pipe to Assembler_2 
+			else if Assembler_3 has = 0 * then
+				output retain 1 bronze_drill_head to Assembler_3
+				output retain 2 iron_gear to Assembler_3
+				output retain 1 item_pipe to Assembler_3
+				output retain 1 fluid_pipe to Assembler_3 
+			end
+		end
+	end
+	if AE2_Interface has lt 6 steel_drill
+	and Misc_Parts has gt 1 steel_drill_head
+	and AE2_Interface has gt 2 iron_gear
+	and AE2_Interface has gt 2 item_pipe
+	and AE2_Interface has gt 2 motor
+	and AE2_Interface has gt 1 tin_cable
+	and AE2_Interface has gt 1 analog_circuit then
+		if not (some Assembler has gt 0 steel_drill_head 
+			and some Assembler has gt 0 iron_gear 
+			and some Assembler has gt 0 item_pipe
+			and some Assembler has gt 0 motor
+			and some Assembler has gt 0 tin_cable
+			and some Assembler has gt 0 analog_circuit) then
+			if Assembler_1 has = 0 * then
+				output retain 1 steel_drill_head to Assembler_1
+				output retain 2 iron_gear to Assembler_1
+				output retain 2 item_pipe to Assembler_1
+				output retain 2 motor to Assembler_1
+				output retain 1 tin_cable to Assembler_1
+				output retain 1 analog_circuit to Assembler_1 
+			else if Assembler_2 has = 0 * then
+				output retain 1 steel_drill_head to Assembler_2
+				output retain 2 iron_gear to Assembler_2
+				output retain 2 item_pipe to Assembler_2
+				output retain 2 motor to Assembler_2
+				output retain 1 tin_cable to Assembler_2
+				output retain 1 analog_circuit to Assembler_2 
+			else if Assembler_3 has = 0 * then
+				output retain 1 steel_drill_head to Assembler_3
+				output retain 2 iron_gear to Assembler_3
+				output retain 2 item_pipe to Assembler_3
+				output retain 2 motor to Assembler_3
+				output retain 1 tin_cable to Assembler_3
+				output retain 1 analog_circuit to Assembler_3 
+			end
+		end
+	end 
+	if AE2_Interface has lt 12 aluminum_rotor 
+	and Solder_Tank has gt 100 fluid::soldering_alloy
+	and Misc_Parts has gt 4 aluminum_blade 
+	and Misc_Parts has gt 1 aluminum_ring then
+		if not (some Assembler has gt 0 aluminum_blade
+		and some Assembler has gt 0 aluminum_ring) then
+			if Assembler_1 has = 0 * then
+				output retain 4 aluminum_blade to Assembler_1
+				output retain 1 aluminum_ring to Assembler_1
+				output retain 100 fluid::soldering_alloy to Assembler_1 top side 	
+			else if Assembler_2 has = 0 * then
+				output retain 4 aluminum_blade to Assembler_2
+				output retain 1 aluminum_ring to Assembler_2
+				output retain 100 fluid::soldering_alloy to Assembler_2 top side 	
+			else if Assembler_3 has = 0 * then
+				output retain 4 aluminum_blade to Assembler_3
+				output retain 1 aluminum_ring to Assembler_3
+				output retain 100 fluid::soldering_alloy to Assembler_3 top side 
+			end
+		end
+	end	
+	if AE2_Interface has lt 32 tin_rotor
+	and Solder_Tank has gt 100 soldering_alloy 
+	and Misc_Parts has gt 4 tin_blade
+	and Misc_Parts has gt 1 tin_ring then
+		if not (some Assembler has gt 0 tin_blade
+		and some Assembler has gt 0 tin_ring) then
+			if Assembler_1 has = 0 * then
+				output retain 4 tin_blade to Assembler_1
+				output retain 1 tin_ring to Assembler_1
+				output retain 100 fluid::soldering_alloy to Assembler_1 top side 	
+			else if Assembler_2 has = 0 * then
+				output retain 4 tin_blade to Assembler_2
+				output retain 1 tin_ring to Assembler_2
+				output retain 100 fluid::soldering_alloy to Assembler_2 top side 	
+			else if Assembler_3 has = 0 * then
+				output retain 4 tin_blade to Assembler_3
+				output retain 1 tin_ring to Assembler_3
+				output retain 100 fluid::soldering_alloy to Assembler_3 top side 
+			end
+		end
+	end	
+	if AE2_Interface has lt 16 redstone_battery
+	and AE2_Interface has gt 1 battery_alloy_plate
+	and Misc_Parts has gt 4 battery_alloy_curved_plate
+	and AE2_Interface has gt 2 tin_cable
+	and AE2_Interface has gt 2 redstone then
+		if not (some Assembler has gt 0 battery_alloy_plate
+		and some Assembler has gt 0 battery_alloy_curved_plate
+		and some Assembler has gt 0 redstone
+		and some Assembler has gt 0 tin_cable) then
+			if Assembler_1 has = 0 * then
+				output retain 1 battery_alloy_plate to Assembler_1
+				output retain 2 tin_cable to Assembler_1
+				output retain 4 battery_alloy_curved_plate to Assembler_1
+				output retain 2 redstone to Assembler_1
+			else if Assembler_2 has = 0 * then
+				output retain 1 battery_alloy_plate to Assembler_2
+				output retain 2 tin_cable to Assembler_2
+				output retain 4 battery_alloy_curved_plate to Assembler_2
+				output retain 2 redstone to Assembler_2				
+			else if Assembler_3 has = 0 * then
+				output retain 1 battery_alloy_plate to Assembler_3
+				output retain 2 tin_cable to Assembler_3
+				output retain 4 battery_alloy_curved_plate to Assembler_3
+				output retain 2 redstone to Assembler_3
+			end
+		end
+	end
+	if AE2_Interface has lt 12 electronic_circuit_board
+	and AE2_Interface has gt 3 aluminum_plate
+	and AE2_Interface has gt 4 electrum_cable
+	and AE2_Interface has gt 1 redstone_battery then
+		if not (some Assembler has gt 0 aluminum_plate
+		and some Assembler has gt 0 electrum_cable
+		and some Assembler has gt 0 analog_circuit_board
+		and some Assembler has gt 0 redstone_battery) then
+			if Assembler_1 has = 0 * then
+				output retain 3 aluminum_plate to Assembler_1
+				output retain 4 electrum_cable to Assembler_1
+				output retain 1 analog_circuit_board to Assembler_1
+				output retain 1 redstone_battery to Assembler_1
+			else if Assembler_2 has = 0 * then
+				output retain 3 aluminum_plate to Assembler_2
+				output retain 4 electrum_cable to Assembler_2
+				output retain 1 analog_circuit_board to Assembler_2
+				output retain 1 redstone_battery to Assembler_2
+			else if Assembler_3 has = 0 * then
+				output retain 3 aluminum_plate to Assembler_3
+				output retain 4 electrum_cable to Assembler_3
+				output retain 1 analog_circuit_board to Assembler_3
+				output retain 1 redstone_battery to Assembler_3
+			end
+		end
+	end	
+	if AE2_Interface has lt 6 silicon_battery
+	and AE2_Interface has gt 1 battery_alloy_plate
+	and AE2_Interface has gt 2 electrum_cable
+	and Misc_Parts has gt 4 battery_alloy_curved_plate
+	and AE2_Interface has gt 2 silicon_dust then
+		if not (some Assembler has gt 0 battery_alloy_plate
+		and some Assembler has gt 0 battery_alloy_curved_plate
+		and some Assembler has gt 0 electrum_cable
+		and some Assembler has gt 0 silicon_dust) then
+			if Assembler_1 has = 0 * then
+				output retain 1 battery_alloy_plate to Assembler_1
+				output retain 2 electrum_cable to Assembler_1
+				output retain 4 battery_alloy_curved_plate to Assembler_1
+				output retain 2 silicon_dust to Assembler_1
+			else if Assembler_2 has = 0 * then
+				output retain 1 battery_alloy_plate to Assembler_2
+				output retain 2 electrum_cable to Assembler_2
+				output retain 4 battery_alloy_curved_plate to Assembler_2
+				output retain 2 silicon_dust to Assembler_2
+			else if Assembler_3 has = 0 * then
+				output retain 1 battery_alloy_plate to Assembler_3
+				output retain 2 electrum_cable to Assembler_3
+				output retain 4 battery_alloy_curved_plate to Assembler_3
+				output retain 2 silicon_dust to Assembler_3
+			end
+		end
+	end	
+	if AE2_Interface has lt 2 steel_machine_casing
+	and AE2_Interface has gt 8 steel_plate
+	and AE2_Interface has gt 1 steel_gear then
+		if not (some Assembler has gt 0 steel_plate
+		and some Assembler has gt 0 steel_gear) then
+			if Assembler_1 has = 0 * then
+				output retain 8 steel_plate to Assembler_1
+				output retain 1 steel_gear to Assembler_1
+			else if Assembler_2 has = 0 * then
+				output retain 8 steel_plate to Assembler_2
+				output retain 1 steel_gear to Assembler_2 	
+			else if Assembler_3 has = 0 * then
+				output retain 8 steel_plate to Assembler_3
+				output retain 1 steel_gear to Assembler_3 
+			end
+		end
+	end	
+	if AE2_Interface has lt 2 basic_machine_hull
+	and AE2_Interface has gt 3 tin_cable
+	and AE2_Interface has gt 1 analog_circuit
+	and AE2_Interface has gt 2 redstone_battery
+	and AE2_Interface has gt 1 steel_machine_casing then
+		if not (some Assembler has gt 0 analog_circuit 
+		and some Assembler has gt 0 tin_cable
+		and some Assembler has gt 0 redstone_battery
+		and some Assembler has gt 0 steel_machine_casing) then
+			if Assembler_1 has = 0 * then
+				output retain 1 analog_circuit to Assembler_1
+				output retain 3 tin_cable to Assembler_1
+				output retain 2 redstone_battery to Assembler_1	
+				output retain 1 steel_machine_casing to Assembler_1
+			else if Assembler_2 has = 0 * then
+				output retain 1 analog_circuit to Assembler_2
+				output retain 3 tin_cable to Assembler_2
+				output retain 2 redstone_battery to Assembler_2
+				output retain 1 steel_machine_casing to Assembler_2
+			else if Assembler_3 has = 0 * then
+				output retain 1 analog_circuit to Assembler_3
+				output retain 3 tin_cable to Assembler_3
+				output retain 2 redstone_battery to Assembler_3
+				output retain 1 steel_machine_casing to Assembler_3
+			end
+		end
+	end	
+	if AE2_Interface has lt 2 advanced_machine_casing
+	and AE2_Interface has gt 8 aluminum_plate
+	and AE2_Interface has gt 1 basic_machine_hull then
+		if not (some Assembler has gt 0  aluminum_plate
+		and some Assembler has gt 0 basic_machine_hull ) then
+			if Assembler_1 has = 0 * then
+				output retain 8 aluminum_plate to Assembler_1
+				output retain 1 basic_machine_hull to Assembler_1
+			else if Assembler_2 has = 0 * then
+				output retain 8 aluminum_plate to Assembler_2
+				output retain 1 basic_machine_hull to Assembler_2
+			else if Assembler_3 has = 0 * then
+				output retain 8 aluminum_plate to Assembler_3
+				output retain 1 basic_machine_hull to Assembler_3
+			end
+		end
+	end	
+	if AE2_Interface has lt 12 pump
+	and Solder_Tank has gt 100 fluid::soldering_alloy
+	and AE2_Interface has gt 3 fluid_pipes
+	and AE2_Interface has gt 3 tin_rotor
+	and AE2_Interface has gt 1 motor then
+		if not (some Assembler has gt 0 fluid_pipes
+		and some Assembler has gt 0 tin_rotor
+		and some Assembler has gt 0 motor) then
+			if Assembler_1 has = 0 * then
+				output retain 3 fluid_pipes to Assembler_1
+				output retain 3 tin_rotor to Assembler_1
+				output retain 1 motor to Assembler_1
+				output retain 100 fluid::soldering_alloy to Assembler_1 top side 	
+			else if Assembler_2 has = 0 * then
+				output retain 3 fluid_pipes to Assembler_2
+				output retain 3 tin_rotor to Assembler_2
+				output retain 1 motor to Assembler_2
+				output retain 100 fluid::soldering_alloy to Assembler_2 top side 	
+			else if Assembler_3 has = 0 * then
+				output retain 3 fluid_pipes to Assembler_3
+				output retain 3 tin_rotor to Assembler_3
+				output retain 1 motor to Assembler_3
+				output retain 100 fluid::soldering_alloy to Assembler_3 top side 	
+			end
+		end
+	end	
+	if AE2_Interface has lt 64 modern_industrialization:transistor then  
+		if Misc_Parts has gt 2 silicon_p_doped_plate
+		and Misc_Parts has gt 1 silicon_n_doped_plate
+		and Misc_Parts has gt 1 electrum_fine_wire
+		and AE2_Interface has gt 3 steel_plate then
+			if not (some Assembler has gt 0 silicon_n_doped_plate 
+			and some Assembler has gt 0 silicon_p_doped_plate
+			and some Assembler has gt 0 steel_plate
+			and some Assembler has gt 0 electrum_fine_wire) then
+				if Assembler_1 has = 0 * then
+					output retain 2 silicon_p_doped_plate to Assembler_1
+					output retain 1 silicon_n_doped_plate to Assembler_1
+					output retain 1 electrum_fine_wire to Assembler_1
+					output retain 3 steel_plate to Assembler_1
+				else if Assembler_2 has = 0 * then
+					output retain 2 silicon_p_doped_plate to Assembler_2
+					output retain 1 silicon_n_doped_plate to Assembler_2
+					output retain 1 electrum_fine_wire to Assembler_2
+					output retain 3 steel_plate to Assembler_2
+				else if Assembler_3 has = 0 * then
+					output retain 2 silicon_p_doped_plate to Assembler_3
+					output retain 1 silicon_n_doped_plate to Assembler_3
+					output retain 1 electrum_fine_wire to Assembler_3
+					output retain 3 steel_plate to Assembler_3
+				end
+			end
+		else if AE2_Interface has gt 3 steel_plate
+		and Misc_Parts has gt 1 electrum_fine_wire
+		and Misc_Parts has gt 3 silicon_plate
+		and AE2_Interface has gt 3 steel_plate then
+			if not (some Assembler has gt 0 silicon_plate
+			and some Assembler has gt 0 electrum_fine_wire
+			and some Assembler has gt 0 steel_plate) then
+				if Assembler_1 has = 0 * then
+					output retain 3 silicon_plate to Assembler_1
+					output retain 3 steel_plate to Assembler_1
+					output retain 1 electrum_fine_wire to Assembler_1	
+				else if Assembler_2 has = 0 * then
+					output retain 3 silicon_plate to Assembler_2
+					output retain 3 steel_plate to Assembler_2
+					output retain 1 electrum_fine_wire to Assembler_2	
+				else if Assembler_3 has = 0 * then
+					output retain 3 silicon_plate to Assembler_3
+					output retain 3 steel_plate to Assembler_3
+					output retain 1 electrum_fine_wire to Assembler_3
+				end
+			end 	
+		end	
+	end
+	if AE2_Interface has lt 64 diode then 
+		if Misc_Parts has gt 1 silicon_n_doped_plate
+		and Misc_Parts has gt 3 electrum_fine_wire
+		and AE2_Interface has gt 2 steel_plate
+		and AE2_Interface has gt 3 glass then
+			if not (some Assembler has gt 0 steel_plate 
+			and some Assembler has gt 0 silicon_n_doped_plate
+			and some Assembler has gt 0 glass
+			and some Assembler has gt 0 electrum_fine_wire) then
+				if Assembler_1 has = 0 * then
+					output retain 1 silicon_n_doped_plate to Assembler_1
+					output retain 3 electrum_fine_wire   to Assembler_1
+					output retain 2 steel_plate to Assembler_1
+					output retain 3 glass to Assembler_1	
+				else if Assembler_2 has = 0 * then
+					output retain 1 silicon_n_doped_plate to Assembler_2
+					output retain 3 electrum_fine_wire   to Assembler_2
+					output retain 2 steel_plate to Assembler_2
+					output retain 3 glass to Assembler_2
+				else if Assembler_3 has = 0 * then
+					output retain 1 silicon_n_doped_plate to Assembler_3
+					output retain 3 electrum_fine_wire   to Assembler_3
+					output retain 2 steel_plate to Assembler_3
+					output retain 3 glass to Assembler_3
+				end
+			end
+		else if Misc_Parts has gt 3 electrum_fine_wire
+		and Misc_Parts has gt 1 silicon_plate
+		and AE2_Interface has gt 2 steel_plate
+		and AE2_Interface has gt 3 glass then
+			if not (some Assembler has gt 0 steel_plate 
+			and some Assembler has gt 0 silicon_plate
+			and some Assembler has gt 0 glass
+			and some Assembler has gt 0 electrum_fine_wire) then
+				if Assembler_1 has = 0 * then
+					output retain 3 electrum_fine_wire to Assembler_1
+					output retain 1 silicon_plate to Assembler_1
+					output retain 2 steel_plate to Assembler_1
+					output retain 3 glass to Assembler_1
+				else if Assembler_2 has = 0 * then
+					output retain 3 electrum_fine_wire to Assembler_2
+					output retain 1 silicon_plate to Assembler_2
+					output retain 2 steel_plate to Assembler_2
+					output retain 3 glass to Assembler_2
+				else if Assembler_3 has = 0 * then
+					output retain 3 electrum_fine_wire to Assembler_3
+					output retain 1 silicon_plate to Assembler_3
+					output retain 2 steel_plate to Assembler_3
+					output retain 3 glass to Assembler_3
+				end
+			end
+		end	
+	end
+	if AE2_Interface has lt 12 electronic_circuit
+	and AE2_Interface has gt 2 diode
+	and AE2_Interface has gt 4 analog_circuit
+	and AE2_Interface has gt 2 modern_industrialization:transistor
+	and AE2_Interface has gt 1 electronic_circuit_board then
+		if not (some Assembler has gt 0 diode  
+		and some Assembler has gt 0 analog_circuit
+		and some Assembler has gt 0 modern_industrialization:transistor
+		and some Assembler has gt 0 electronic_circuit_board) then
+			if Assembler_1 has = 0 * then
+				output retain 2 diode to Assembler_1
+				output retain 4 analog_circuit to Assembler_1
+				output retain 2 modern_industrialization:transistor to Assembler_1
+				output retain 1 electronic_circuit_board to Assembler_1				
+			else if Assembler_2 has = 0 * then
+				output retain 2 diode to Assembler_2
+				output retain 4 analog_circuit to Assembler_2
+				output retain 2 modern_industrialization:transistor to Assembler_2
+				output retain 1 electronic_circuit_board to Assembler_2	
+			else if Assembler_3 has = 0 * then
+				output retain 2 diode to Assembler_2
+				output retain 4 analog_circuit to Assembler_2
+				output retain 2 modern_industrialization:transistor to Assembler_2
+				output retain 1 electronic_circuit_board to Assembler_2
+			end
+		end
+	end	
+end
+output 0 fluid:: to Tanks
+output 0 to Misc_Parts
+end
+end 
